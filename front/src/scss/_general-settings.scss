@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap');
+}
+
+.wrapper {
+    min-height: 100vh;  
+
+    .empty{
+        height: 60px;
+        background-color: red;
+    }
+}
+
+.container {
+    width: 1020px;
+    margin: 0 auto;
+}
