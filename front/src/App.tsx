@@ -1,12 +1,24 @@
-import { Layout } from "./components/Layout"
+import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import { RootLayout } from "./layouts/RootLayout";
+import { MainPage, Post } from "./pages";
+import { NotFound } from "./pages/NotFound";
 
-import {MainPage} from "./pages/ManagerNews";
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path="/" element={<RootLayout />}>
+      <Route index element={<MainPage/>}/>
+      <Route path=":id" element={<Post/>}/>
+      <Route path="*" element={<NotFound/>}/>
+    </Route>
+  )
+);
+
 
 function App() {
   return (
     <>
-      <Layout />
-      <MainPage topic="sport"/>
+      <RouterProvider router={router} />
     </>
 
 

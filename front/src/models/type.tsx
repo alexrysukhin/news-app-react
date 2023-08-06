@@ -1,6 +1,6 @@
 import { type } from "@testing-library/user-event/dist/type"
 
-export type Post = {
+export type News = {
     apiUrl: string
     fields: {
         body: string

@@ -3,6 +3,10 @@ import { MdBolt } from "react-icons/md"
 import {motion} from "framer-motion"
 
 import { Burger } from './Burger';
+import { useAppDispatch, useAppSelector } from "../../hook";
+import { setTopic } from '../../store/newsSlice';
+import { Link } from "react-router-dom";
+
 
 const variants = {
     visible: { y: 0 },
@@ -12,11 +16,12 @@ const variants = {
 const categoriesItems = ["Sport", "World", "Covid", "Business", "Politics", "Science", "Religion", "Health"]
 
 export const HeaderMenu = () => {
+    const dispatch = useAppDispatch();
+    const currentTopic = useAppSelector(state => state.news.currentTopic);
     const [isBurgerClicked, setIsBurgerClicked] = useState<boolean>(false);
-    const [selectedCategory, setSelectedCategory] = useState<string>("");
     
     const changeCategory = (category: string) => {
-        setSelectedCategory(category)
+        dispatch(setTopic(category))
     }
 
     return(
@@ -32,17 +37,29 @@ export const HeaderMenu = () => {
                     <div className="categories-dropdown">
                         <ul className="categories-list">
                             {categoriesItems.map((item, i) => (
-                              <li key={i} onClick={()=>changeCategory(item)} className={selectedCategory === item ? " categories-item categories-item__active" : "categories-item"}>{item}</li>
+                                <Link to="/">
+                                    <li key={i} onClick={()=>changeCategory(item)} className={currentTopic === item ? " categories-item categories-item__active" : "categories-item"}>
+                                        {item}
+                                    </li>
+
+                                </Link>
                             ))
                           }
                         </ul>
                     </div>
                 </div>
-                <div className="menu__item">
-                    Trending News
-                     <span><MdBolt style={{color: "yellow", fontSize: "14px"}}/></span></div>
+                <Link to="/">
+                    <div className="menu__item" onClick = {() => dispatch(setTopic("trending"))}>
+                        Trending News
+                        <span>
+                            <MdBolt style={{color: "yellow", fontSize: "14px"}}/>
+                        </span>
+                    </div>
+                </Link>
             </motion.div>
             <Burger isBurgerClicked={isBurgerClicked} setIsBurgerClicked={setIsBurgerClicked}/>
         </div>
     )
 }
+
+
