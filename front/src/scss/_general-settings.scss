@@ -6,6 +6,7 @@
 
 body{
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;400;700&display=swap');
+    font-family: Inter;
 }
 
 .wrapper {
@@ -13,7 +14,6 @@ body{
 
     .empty{
         height: 60px;
-        background-color: red;
     }
 }
 

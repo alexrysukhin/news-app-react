@@ -1,0 +1,11 @@
+$boldColor: #2D3748;
+$contentColor: #718096;
+
+@import "./components/footer/Footer.scss";
+@import "./components/header/header.scss";
+@import "./general-settings";
+@import "./components/mainPage/FirstNews.scss";
+@import "./components/mainPage/NewsList.scss";
+@import "./components/ReadMoreButton.scss";
+@import "./components/Loader.scss";
+@import "./components/Post.scss";

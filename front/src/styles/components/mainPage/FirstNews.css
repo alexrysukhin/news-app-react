@@ -1,0 +1,10 @@
+.first-news {
+  border: 1px solid #E2E2E2;
+  display: flex;
+  border-radius: 5px; }
+  .first-news .first-news-content {
+    width: 55%;
+    padding: 20px; }
+    .first-news .first-news-content .first-news-content-title {
+      font-size: 30px;
+      font-weight: 700; }
