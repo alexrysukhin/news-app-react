@@ -13,7 +13,7 @@ export const RootLayout = () => {
     return (
         <>
             <div className="wrapper">
-                <Header searchValue={searchValue} setSearchValue={setSearchValue}/>
+                <Header/>
                 <div className="container">
                     <Outlet />
                     <div className="empty"></div>

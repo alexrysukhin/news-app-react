@@ -3,6 +3,7 @@ import { Link, Navigate, Route, Routes } from "react-router-dom";
 import { FirstNews } from '../components/mainPage/FirstNews';
 import dayjs from 'dayjs';
 
+
 import { useAppDispatch, useAppSelector } from "../hook";
 import { fetchNews } from '../store/newsSlice';
 import { Post } from './Post';
@@ -14,13 +15,16 @@ export const MainPage = () => {
     const currentTopic = useAppSelector(state => state.news.currentTopic);
     const newsList = useAppSelector(state => state.news.newsList);
     const loading = useAppSelector(state => state.news.loading);
+    const searchValue = useAppSelector(state => state.news.searchValue);
+    const windowHeight = useRef(window.innerHeight);
+    const scroll = useRef(window.scroll);
 
     useEffect(() => {
         dispatch(fetchNews(currentTopic));
 
     },[currentTopic]);
 
-    useEffect(() => {console.log(newsList)}, [newsList])
+    useEffect(() => {console.log(searchValue)}, [searchValue])
 
     const cutTitle= (title: string) => {
         return  `${title.split(' ').slice(0, 15).join(" ")}...` 
@@ -54,16 +58,18 @@ export const MainPage = () => {
 
                     <ul className="news-list">
                         {newsList.slice(1).map(post => {
-                          
-                            return <NewsItem 
-                                id={makeId(post.id)} 
-                                title={cutTitle(post.webTitle)}
-                                desc={cutDescription(post.fields.bodyText)}
-                                date={dateFormating(dateFormating(post.webPublicationDate))}
-                                image={post.fields.thumbnail}
-                            />
+                            if(post.webTitle.toLocaleLowerCase().includes(searchValue)){
+                                return <NewsItem 
+                                    id={makeId(post.id)} 
+                                    title={cutTitle(post.webTitle)}
+                                    desc={cutDescription(post.fields.bodyText)}
+                                    date={dateFormating(dateFormating(post.webPublicationDate))}
+                                    image={post.fields.thumbnail}
+                                />
+                            }
                             
                         })}
+                        <div className="news-list-empty-item"></div>
                     </ul>  
                 </>
             }

@@ -8,7 +8,8 @@ const initialState: NewsState = {
    newsList: [],
    currentTopic: "trending",
    loading: false,
-   error: null
+   error: null,
+   searchValue:""
 } 
 
 export const fetchNews = createAsyncThunk<News[], string, {rejectValue: string}>(
@@ -32,6 +33,9 @@ export const newsSlice = createSlice({
    reducers:{
       setTopic(state, action: PayloadAction<string>) {
          state.currentTopic = action.payload;
+      },
+      setSearchValue(state,action: PayloadAction<string>) {
+         state.searchValue = action.payload
       }
    },
    extraReducers:(builder) =>{
@@ -48,7 +52,7 @@ export const newsSlice = createSlice({
        });
    }
 }) 
-export const { setTopic } = newsSlice.actions;
+export const { setTopic, setSearchValue } = newsSlice.actions;
 
 export default newsSlice.reducer
 function isError(action: AnyAction){

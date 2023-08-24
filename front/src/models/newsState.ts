@@ -5,5 +5,6 @@ export type NewsState = {
     newsList: News[];
     currentTopic: string;
     loading: boolean;
-    error: string | null
+    error: string | null;
+    searchValue: string;
 }

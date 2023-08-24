@@ -1,22 +1,29 @@
 import { FaSistrix } from "react-icons/fa";
 import { GoX } from "react-icons/go";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
-interface IHeaderInputProps {
-    searchValue: string;
-    setSearchValue:(arg: string) => void
-}
+import { setSearchValue } from '../../store/newsSlice';
+import { useAppDispatch } from "../../hook";
 
-export const HeaderInput:React.FC<IHeaderInputProps> = ({searchValue,setSearchValue}) => {
+
+
+export const HeaderInput= () => {
+    const [searchValue, setValue] = useState("");
+    const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        dispatch(setSearchValue(searchValue))
+    }, [searchValue])
+
 
     return (
         <div className="input-wrapper">
             <input 
                 value={searchValue} 
-                onChange={(e)=> {setSearchValue(e.target.value) }} 
+                onChange={(e)=> {setValue(e.target.value) }} 
                 placeholder="Type somethin to start search" className="header-input" />
             <FaSistrix className="input-icon"/>
-            {searchValue &&  <GoX className="input-cross" onClick={()=> setSearchValue("")} /> }
+            {searchValue &&  <GoX className="input-cross" onClick={()=> setValue("")} /> }
             
         </div>
           
