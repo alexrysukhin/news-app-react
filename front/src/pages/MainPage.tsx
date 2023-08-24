@@ -9,9 +9,11 @@ import { fetchNews } from '../store/newsSlice';
 import { Post } from './Post';
 import { NewsItem } from '../components/mainPage/NewsItem';
 import { Loader } from '../components/Loader';
+import { ButtonToTop } from '../components/mainPage/ButtonToTop';
 
 export const MainPage = () => {
     const dispatch = useAppDispatch();
+    const [isButtonToTopVisible, setIsButtonToTopVisible] = useState(false);
     const currentTopic = useAppSelector(state => state.news.currentTopic);
     const newsList = useAppSelector(state => state.news.newsList);
     const loading = useAppSelector(state => state.news.loading);
@@ -20,8 +22,17 @@ export const MainPage = () => {
     const scroll = useRef(window.scroll);
 
     useEffect(() => {
-        dispatch(fetchNews(currentTopic));
+        window.addEventListener("scroll", () => {
+          if (window.pageYOffset > window.innerHeight) {
+            setIsButtonToTopVisible(true)
+        }else{
+            setIsButtonToTopVisible(false)
+        }
+        });
+      }, []);
 
+    useEffect(() => {
+        dispatch(fetchNews(currentTopic));
     },[currentTopic]);
 
     useEffect(() => {console.log(searchValue)}, [searchValue])
@@ -71,6 +82,7 @@ export const MainPage = () => {
                         })}
                         <div className="news-list-empty-item"></div>
                     </ul>  
+                    {isButtonToTopVisible && <ButtonToTop />}
                 </>
             }
         </>

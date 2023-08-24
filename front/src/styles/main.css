@@ -295,3 +295,23 @@ body {
   height: 1px;
   background-color: #e8e7e7;
   top: -33px; }
+
+.buttonToTop {
+  cursor: pointer;
+  background-color: blue;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  box-shadow: 1px 1px 10px #817878;
+  border: none;
+  position: fixed;
+  top: 90%;
+  left: 80%; }
+  .buttonToTop .button-to-top-icon {
+    height: 30px;
+    color: white;
+    transition: .3; }
+  .buttonToTop:hover {
+    box-shadow: 1px 1px 14px #817878; }
+    .buttonToTop:hover .button-to-top-icon {
+      transform: scale(1.2); }
