@@ -37,7 +37,7 @@ export const HeaderMenu = () => {
                     <div className="categories-dropdown">
                         <ul className="categories-list">
                             {categoriesItems.map((item, i) => (
-                                <Link to="/">
+                                <Link className="categories-link" to="/">
                                     <li key={i} onClick={()=>changeCategory(item)} className={currentTopic === item ? " categories-item categories-item__active" : "categories-item"}>
                                         {item}
                                     </li>

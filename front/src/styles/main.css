@@ -66,6 +66,9 @@
   flex-direction: column;
   flex-wrap: wrap;
   height: 113px; }
+  .header-menu .menu__categories .menu__item .categories-list .categories-link {
+    text-decoration: none;
+    color: #2D3748; }
 
 .header-menu .menu__categories .menu__item .categories-list .categories-item {
   padding: 5px; }

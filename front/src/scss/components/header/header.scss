@@ -49,7 +49,13 @@
          width: 100%;
          flex-direction: column;
          flex-wrap: wrap;
-         height: 113px; }
+         height: 113px; 
+
+         .categories-link{
+          text-decoration: none;
+          color: $boldColor;
+         }
+        }
          .header-menu .menu__categories .menu__item .categories-list .categories-item {
            padding: 5px;
           }

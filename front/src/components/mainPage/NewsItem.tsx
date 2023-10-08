@@ -13,7 +13,9 @@ export const NewsItem:React.FC<INewsItemProps> = ({id, title, desc,date, image})
    return(
             <li className="news-item" key={id} >
                <div className="news-item-image-holder">
+               <Link to={id}>
                   <img src={image} alt="news-image" />
+               </Link>
                </div>
                <div className="news-item-content">
                   <h3 className="news-item-content-title">{title}</h3>
